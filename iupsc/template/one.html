@@ -1,0 +1,138 @@
+{% load crispy_forms_tags %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>WebGL Demo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    <title>Database</title>
+    <meta charset="utf-8">
+  </head>
+  <style>
+        #formdivs{
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+         
+        }
+        #formaboutpartner{
+          display: none;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          position: fixed;
+          top:55px;
+          left:205Px;
+          
+        }
+        #formaboutproject{
+          display: none;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          position: fixed;
+          top:55px;
+          left:205Px;
+          
+        }
+</style>
+  <body>
+        <nav class="navbar navbar-expand-lg navbar-light " style="background-color: rgb(216, 166, 173)">
+                <div class="container">
+                 <ul class="navbar-nav mr-auto">
+                     <li class="nav-item active"><a class="nav-link" href="">Home</a></li>
+                 </ul>
+                 <ul class="navbar-nav ml-auto">
+                     <li class="nav-item"><a class="nav-link" style="cursor: pointer" onclick="openForm1()">About Project</a></li>
+                     <li class="nav-item" ><a class="nav-link" style="cursor: pointer" onclick="openForm()">About Partner</a></li>
+                 </ul>
+                </div>
+        </nav>
+
+        <div  style="height: 90px;width: 70%;background-color:rgb(224, 224, 224);margin: auto">
+            <h3 style="text-align: center; padding: 20px;">Chemical IUPSC </h3>
+        </div>
+
+        <form id="formdivs" style="width:550px; height: 450px; padding:30px;margin: auto;border-top: 10px;margin-top: 20px; " method="post">
+                    <div style="margin-top:35px; ">
+                      {% csrf_token %}          
+                      {{form|crispy}}
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    <div class="alert alert-light" role="alert" style="margin-top:60px;">
+                      Enter IUPSC name of chemical compound (acyclic) which max of two Substitute group (BR,CL)
+                    </div>
+        </form>
+
+        <div class="container" id="formaboutpartner" style="width: 71%; height: 80%; margin:auto; background-color:white;  ">
+          <button type="button" class="close" aria-label="Close" style="padding:2%;" onclick="closeForm()">
+              <span aria-hidden="true">&times;</span>
+           </button>
+      
+           <h3 style="padding:5%; margin-left: 30px;">About Project-mates </h3>
+           <div>
+              <div class="row" style="padding:10px">
+                  <div class="col-sm-4">
+                      <img style="width:150px;height: 150px;display: block; margin: auto"   src="https://www.seekpng.com/png/detail/351-3513773_graduation-ceremony-graduate-university-academic-degree-alumni-icon.png" class="rounded-circle" alt="Cinque Terre"> 
+                  </div>
+                  <div class="col-sm-8">
+                        <div class="alert alert-light" role="alert" style="display: block; width: 70%;margin: auto;padding: 30px;" >
+                            Yashvanth Pai
+                            <br>
+                            <a href="https://www.rnsit.ac.in">RNSIT Bengalore</a>
+                            <br>
+                            <a href="https://www.rnsit.ac.in">Linkedin</a>
+                        </div>  
+                  </div>
+                </div>
+            
+           </div>
+          <hr style="background-color: rgb(146, 144, 141); width: 80%; margin: auto;">   
+          <div>
+              <div class="row" style="padding: 10px;">
+                  <div class="col-sm-4">
+                      <img style="width:150px;height: 150px;display: block; margin: auto"   src="https://www.seekpng.com/png/detail/351-3513773_graduation-ceremony-graduate-university-academic-degree-alumni-icon.png" class="rounded-circle" alt="Cinque Terre"> 
+                  </div>
+                  <div class="col-sm-8">
+                        <div class="alert alert-light" role="alert" style="display: block; width: 70%;margin: auto;padding: 30px;" >
+                            Shankar
+                            <br>
+                            <a href="https://www.rnsit.ac.in">RNSIT Bengalore</a>
+                            <br>
+                            <a href="https://www.rnsit.ac.in">Linkedin</a>
+                        </div>  
+                  </div>
+                </div>
+            
+           </div>
+          <hr style="background-color: rgb(146, 144, 141); width: 80%; margin: auto;">
+  </div>
+  <div class="container" id="formaboutproject" style="width: 71%; height: 450px; margin:auto; background-color:white;  ">
+      <button type="button" class="close" aria-label="Close" style="padding:2%;" onclick="closeForm1()">
+          <span aria-hidden="true">&times;</span>
+       </button>
+  
+       <h3 style="padding:5%; margin-left: 30px;">3D MODEL OF IUPSC COMPOUND</h3>
+ 
+      <hr style="background-color: rgb(146, 144, 141); width: 80%; margin: auto;">   
+      <p style=" width: 70%; margin: auto; padding: 30px">This Web Application is implemented to help in understanding structure of compound. It take IUPSC name of a compund and drwas a 3D model corresponding to that perticular compound</p>
+  
+      <hr style="background-color: rgb(146, 144, 141); width: 80%; margin: auto;">
+</div>
+
+
+         <script>
+          function openForm() {
+            closeForm1();
+            document.getElementById("formaboutpartner").style.display = "block";
+        
+          }
+          function openForm1() {
+            closeForm();
+            document.getElementById("formaboutproject").style.display = "block";
+           
+          }
+          
+          function closeForm() {
+            document.getElementById("formaboutpartner").style.display = "none";
+          }
+          function closeForm1() {
+            document.getElementById("formaboutproject").style.display = "none";
+          }
+          </script>
+  </body>
+
+  
+</html>
